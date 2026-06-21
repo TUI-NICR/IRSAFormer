@@ -1,0 +1,31 @@
+# ruff.toml
+exclude = ["lib", "stuff"]
+
+[lint]
+ignore = [
+  # E501 line too long (82 > 79 characters)
+  "E501",
+  # E402 module level import not at top of file
+  "E402",  # module level import not at top of file
+  # E731 do not assign a lambda expression, use a def
+  "E731",  # do not assign a lambda expression
+]
+
+[lint.isort]
+known-first-party = [
+    "nicr_mt_scene_analysis",
+    "nicr_scene_analysis_datasets"
+]
+
+[lint.pylint]
+max-args = 15
+max-returns = 6
+# large due to main.py
+max-branches = 100
+max-statements = 300
+
+[lint.pydocstyle]
+convention = "google"
+
+[lint.flake8-builtins]
+builtins-ignorelist = ["map", "filter", "input"]
