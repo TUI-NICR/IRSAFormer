@@ -1,0 +1,62 @@
+[project]
+name = "IRSAFormer"
+version = "0.1.0"
+description = "Efficient Indoor Robotic Scene Analysis with Encoder-Centric Vision Transformers"
+readme = "README.md"
+requires-python = "==3.12.*"
+dependencies = [
+    "accelerate>=1.12.0",
+    "fvcore==0.1.5.post20221221",
+    "gdown>=5.2.0",
+    "gitignore-parser==0.1.12",
+    "h5py>=3.15.1",
+    "ipykernel==6.29.5",
+    "jsonargparse[signatures]==4.38",
+    "lightning==2.5.1.post0",
+    "matplotlib==3.10.1",
+    "nicr-mt-scene-analysis",
+    "nicr-scene-analysis-datasets[withauxiliarydata]",
+    "onnxscript>=0.5.6",
+    "opencv-python>=4.12.0.88",
+    "pycocotools==2.0.8",
+    "pytest>=9.0.2",
+    "ruff>=0.14.9",
+    "scipy==1.15.2",
+    "seaborn>=0.13.2",
+    "timm==1.0.24",
+    "torch==2.11.0",
+    "torchvision==0.26.0",
+    "torchmetrics>=1.8.2",
+    "transformers==4.57.1",
+    "wandb==0.19.10",
+]
+
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["irsaformer*"]
+
+[tool.uv.workspace]
+members = [
+    "lib/nicr-scene-analysis-datasets",
+    "lib/nicr-multitask-scene-analysis",
+]
+
+[tool.uv.sources]
+nicr-scene-analysis-datasets = { workspace = true, editable = true }
+nicr-mt-scene-analysis = { workspace = true, editable = true }
+# pin the CUDA 12.8 torch build on Linux (cu130 needs a newer driver on some
+# systems). on macOS, fall back to the default PyPI wheel (MPS on Apple Silicon).
+torch = [
+    { index = "pytorch-cu128", marker = "sys_platform == 'linux'" },
+]
+torchvision = [
+    { index = "pytorch-cu128", marker = "sys_platform == 'linux'" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
