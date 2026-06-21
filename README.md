@@ -305,7 +305,7 @@ The visual-embedding checkpoint
 ([Download](https://drive.usercontent.google.com/download?id=1Ly7srBiMd9bdQtv3J_QPUhuMzpacg6b3))
 provides the text-aligned segmentation metrics (mIoU / PQ):
 
-| Dataset  | mIoU (text / visual / linear-probe) | PQ (text / visual /linear-probe) |
+| Dataset  | mIoU (text / visual / linear-probe) | PQ (text / visual / linear-probe) |
 |----------|:-----------------------------------:|:---------------------------------:|
 | NYUv2    | 41.06 / 49.20 / 60.93              | 36.83 / 42.31 / 49.26            |
 | SUN RGB-D| 38.71 / 39.63 / 46.70              | 35.42 / 37.76 / 45.79            |
@@ -315,7 +315,7 @@ The scene-embedding checkpoint
 ([Download](https://drive.usercontent.google.com/download?id=1hxMIlrgc6u-Gzko6R_qfuQxAzYkWh2da))
 provides the scene-classification accuracy (bAcc):
 
-| Dataset  | bAcc (text / visual /linear-probe)  |
+| Dataset  | bAcc (text / visual / linear-probe) |
 |----------|:-----:|
 | NYUv2    | 72.40 / 82.03 / 84.57 |
 | SUN RGB-D| 60.45 / 65.49 / 69.98 |
@@ -349,7 +349,12 @@ python main.py \
 Validation results:
 { 
     ...
-    'valid_token_visual_embedding_linear_probing_miou': 0.6094,
+    'valid_token_visual_embedding_text_based_miou': 0.4106,
+    'valid_token_visual_embedding_visual_mean_based_miou': 0.4920,
+    'valid_token_visual_embedding_linear_probing_miou': 0.6093,
+    'valid_token_visual_embedding_text_based_all_token_pq': 0.3683,
+    'valid_token_visual_embedding_visual_mean_based_all_token_pq': 0.4231,
+    'valid_token_visual_embedding_linear_probing_all_token_pq': 0.4926,
     ... 
 }
 ```
@@ -373,6 +378,8 @@ python main.py \
 Validation results:
 { 
     ...
+    'valid_token_image_embedding_text_based_bacc': 0.7240,
+    'valid_token_image_embedding_visual_mean_based_bacc': 0.8203,
     'valid_token_image_embedding_linear_probing_bacc': 0.8457,
     ... 
 }
@@ -508,6 +515,7 @@ python main.py --help
 
 ## Changelog
 
-**Version 0.1.0 (Initial release, June 2026)**
-- initial public release of IRSAFormer (IJCNN 2026)
+**Version 0.1.0 (June 21, 2026)**
+- initial release of IRSAFormer: Efficient Indoor Robotic Scene Analysis with
+  Encoder-Centric Vision Transformers
 
